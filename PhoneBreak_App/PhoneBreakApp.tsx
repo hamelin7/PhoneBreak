@@ -2,9 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  SafeAreaView,
-  useColorScheme,
-  StyleSheet, // Added StyleSheet import
+  StyleSheet,
+  useColorScheme
 } from 'react-native';
 
 function PhoneBreakApp(): JSX.Element {
@@ -12,7 +11,7 @@ function PhoneBreakApp(): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Text style={isDarkMode ? styles.darktext : styles.whitetext}>
+      <Text style={isDarkMode ? styles.whiteText : styles.darkText}>
         Hello World!
       </Text>
     </View>
@@ -22,14 +21,14 @@ function PhoneBreakApp(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
-  whitetext: {
-    color: '#FFFFFF',
+  whiteText: {
+    color: '#FFFFFF'
   },
-  darktext: {
-    color: '#000000',
-  },
+  darkText: {
+    color: '#000000'
+  }
 });
 
 export default PhoneBreakApp;
