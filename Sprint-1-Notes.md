@@ -15,4 +15,3 @@ I am using a work owned device for this project and we use Microsoft's AzureAD s
 Today's goal is to have a running hello world example application running on my Android Virtual Device, which is a Pixel device. I start by opening my Android Virtual Device, then issuing the following command from the root of the directory where my new React Native App is located: 'npx react-native run-android'
 
 When you first start up the Android Virtual Device and run your app, you will see a welcome screen. There you learn that the code being rendered to create this screen is running from the App.tsx file. We will be editing the App.tsx file to get started and do the initial hello world. From there I created a new .tsx file and started to build that new file and include some styling like centering text and changing the text color depending on dark mode being enabled. 
-
