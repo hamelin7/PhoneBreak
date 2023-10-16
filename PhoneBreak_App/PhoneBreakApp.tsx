@@ -37,13 +37,13 @@ header: {
   },
 
 logo: {
-  width: 177,
-  height: 35,
+  width: '45%',
+  height: '45%',
   paddingBottom: 50
   },
 
   container: {
-    paddingTop: 100,
+    paddingTop: 125,
     alignItems: 'center',
     justifyContent: 'center'
   },
