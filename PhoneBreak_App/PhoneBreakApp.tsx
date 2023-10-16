@@ -16,7 +16,7 @@ function PhoneBreakApp(): JSX.Element {
     
   <SafeAreaView>
     <View style={styles.header}>
-        <Image source={require('./components/BREAK_logo.png')} style={styles.logo} resizeMode='contain'/>
+        <Image source={require('./assets/images/BREAK_logo.png')} style={styles.logo} resizeMode='contain'/>
     </View>
     <View style={styles.container}>
           <Solo_Button/>
@@ -31,9 +31,9 @@ function PhoneBreakApp(): JSX.Element {
 const styles = StyleSheet.create({
 header: {
   alignItems:'center',
-  justifyContent: 'flex-end',
-  backgroundColor: '#F59929',
-  height: 100
+  justifyContent: 'center',
+  backgroundColor: 'rgb(253, 150, 57)',
+  height: 75
   },
 
 logo: {

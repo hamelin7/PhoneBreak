@@ -53,6 +53,8 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Montserrat-Italic-VariableFont_wght.ttf</string>
+		<string>Montserrat-VariableFont_wght.ttf</string>
 		<string>Montserrat-Black.ttf</string>
 		<string>Montserrat-BlackItalic.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
@@ -71,7 +73,6 @@
 		<string>Montserrat-SemiBoldItalic.ttf</string>
 		<string>Montserrat-Thin.ttf</string>
 		<string>Montserrat-ThinItalic.ttf</string>
-		<string>Montserrat-VariableFont_wght.ttf</string>
 	</array>
 </dict>
 </plist>

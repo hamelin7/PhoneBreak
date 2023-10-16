@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   customButton: {
     flex: 1,
-    backgroundColor: 'rgb(253, 150, 57)', // Background color
+    backgroundColor: 'rgb(253, 150, 57)',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 5,
@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   buttonText: {
-    color: 'black', // Text color
-    fontFamily:'Montserrat',
-    fontSize: 54,
-    fontWeight: '400',
+    color: 'black',
+    fontFamily:'Montserrat-Regular',
+    fontSize: 50,
+    fontWeight: 'normal',
     letterSpacing: 4
   },
 });

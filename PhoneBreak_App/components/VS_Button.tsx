@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black', // Text color
-    fontFamily:'Montserrat',
-    fontSize: 74,
-    fontWeight: '400',
+    fontFamily:'Montserrat-Light',
+    fontSize: 70,
+    fontWeight: 'normal',
     letterSpacing: 4
   },
 });
