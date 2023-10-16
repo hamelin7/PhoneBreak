@@ -6,16 +6,15 @@ import {
   SafeAreaView
 } from 'react-native'
 
-function PhoneBreakApp():{
+function App():{
   return(
     <SafeAreaView>
       <View>
         <Text> Hello World! </Text>
         <Text> Hello World! </Text>
-
       </View>
     </SafeAreaView>
     )
 }
 
-export default PhoneBreakApp
+export default App;

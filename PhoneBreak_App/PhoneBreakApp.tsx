@@ -1,34 +1,53 @@
 import React from 'react';
+import Solo_Button from './components/Solo_Button';
+import VS_Button from './components/VS_Button';
 import {
   View,
   Text,
   StyleSheet,
-  useColorScheme
+  Image,
+  SafeAreaView
 } from 'react-native';
 
 function PhoneBreakApp(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+
 
   return (
-    <View style={styles.container}>
-      <Text style={isDarkMode ? styles.whiteText : styles.darkText}>
-        Hello World!
-      </Text>
+    
+  <SafeAreaView>
+    <View style={styles.header}>
+        <Image source={require('./components/BREAK_logo.png')} style={styles.logo} resizeMode='contain'/>
     </View>
+    <View style={styles.container}>
+          <Solo_Button/>
+    </View>
+    <View style={styles.container}>
+      <VS_Button/>
+    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+header: {
+  alignItems:'center',
+  justifyContent: 'flex-end',
+  backgroundColor: '#F59929',
+  height: 100
+  },
+
+logo: {
+  width: 177,
+  height: 35,
+  paddingBottom: 50
+  },
+
   container: {
-    flex: 1,
-    alignItems: 'center'
+    paddingTop: 100,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  whiteText: {
-    color: '#FFFFFF'
-  },
-  darkText: {
-    color: '#000000'
-  }
+
 });
 
 export default PhoneBreakApp;
