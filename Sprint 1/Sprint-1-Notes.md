@@ -16,6 +16,6 @@ My goal is to have a basic GUI example application running on my Android Virtual
 
 When you first start up the Android Virtual Device and run your app, you will see a welcome screen. There you learn that the code being rendered to create this screen is running from the App.tsx file. We will be editing the App.tsx file to get started and do the initial hello world. From there I created a new .tsx file and started to build that new file and include some styling like centering text and changing the text color depending on dark mode being enabled. 
 
-I created multiple Typescript files to handle the button components and created a Button_Press.js file to hold the logic which I will be working on in Sprint 2.
+I created 3 Typescript files to handle the UI, button components and created a Button_Press.js file to hold the logic which I will be working on in Sprint 2.
 
 I learned how to import custom google fonts, how to add and scale an image for my app header and also learned alot about how to add styling to things like buttons. 
