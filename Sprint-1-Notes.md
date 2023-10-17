@@ -1,6 +1,6 @@
-Sprint 1 Goal - have basic hello world application running using react native. 
+Sprint 1 Goal - have basic GUI created for my application so I can start working on the logic in coding sprint 2.
 
-React Native is all new to me and I have extremely limited experience with Android apps using Android Studio. My goal first goal is to get a basic hello world application working on a virtual emulated android device. Once I have the basic hello world application working, my next step will be to add a simple UI button to initiate the game code. 
+React Native is all new to me and I have extremely limited experience with Android apps using Android Studio. My goal first goal is to get a basic hello world application working on a virtual emulated android device. Once I have the basic hello world application working, my next step will be to add a simple GUI with 2 buttons to initiate the game code. 
 
 To start the project, first I had to install Node.JS, a Java Development Kit and Android Studio. Android Studio won't necessarily be used, but it is an easy way to get additional dependencies installed without much fuss. Once those dependencies were installed, I had to manually add several environmental variables which I've also included in screenshots. 
 
@@ -12,6 +12,10 @@ I received the following error upon attempting to run the app on my virtual andr
 
 I am using a work owned device for this project and we use Microsoft's AzureAD services to manage user profile folders on workstations. I'm wondering if OneDrive synching user profile folders and my project folder residing in my user profile being related to this error. So in an effort to continue to make progress I created a whole new React Native project in a location not currently being synched by OneDrive. Phew! That was it! I setup a brand new project in a new folder in the root of my user account, but outside of the synched profile folders and I was able to get the React Native app to launch on my Android Virtual Device. Now I have a new issue because I wanted to keep all my notes and react-native code all within the same GitHub project, but that folder is currently also synced with OneDrive because it resides in my AzureAD user profile. I think the best course now would be to connect my new react-native local folder to GitHub and then include a link to that repository from this repository. 
 
-Today's goal is to have a running hello world example application running on my Android Virtual Device, which is a Pixel device. I start by opening my Android Virtual Device, then issuing the following command from the root of the directory where my new React Native App is located: 'npx react-native run-android'
+My goal is to have a basic GUI example application running on my Android Virtual Device. I start by opening my Android Virtual Device, then issuing the following command from the root of the directory where my new React Native App is located: 'npx react-native run-android'
 
 When you first start up the Android Virtual Device and run your app, you will see a welcome screen. There you learn that the code being rendered to create this screen is running from the App.tsx file. We will be editing the App.tsx file to get started and do the initial hello world. From there I created a new .tsx file and started to build that new file and include some styling like centering text and changing the text color depending on dark mode being enabled. 
+
+I created multiple Typescript files to handle the button components and created a Button_Press.js file to hold the logic which I will be working on in Sprint 2.
+
+I learned how to import custom google fonts, how to add and scale an image for my app header and also learned alot about how to add styling to things like buttons. 
