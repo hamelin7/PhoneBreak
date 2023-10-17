@@ -80,6 +80,10 @@
     {
       "path": "assets/fonts/static/Montserrat-ThinItalic.ttf",
       "sha1": "9455ac7542b843c9bf96db3dd59302d7da39fa3c"
+    },
+    {
+      "path": "assets/images/BREAK_logo.png",
+      "sha1": "89bb138c7eef7b7d3ad65b79b734f4091e6c2cea"
     }
   ]
 }
