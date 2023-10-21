@@ -1,3 +1,3 @@
-export function Button_Press() {
+export function GameLogic() {
   //button logic will go here
 }

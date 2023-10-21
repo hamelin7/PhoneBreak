@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import {Button_Press} from './Button_Press';
+import {GameLogic} from './Button_Press';
 
 export default function VS_Button() {
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity
         style={styles.customButton}
-        onPress={() => {Button_Press}}
+        onPress={GameLogic}
       >
         <Text style={styles.buttonText}>VS</Text>
       </TouchableOpacity>

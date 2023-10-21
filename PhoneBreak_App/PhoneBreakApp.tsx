@@ -16,7 +16,7 @@ function PhoneBreakApp(): JSX.Element {
     
   <SafeAreaView>
     <View style={styles.header}>
-        <Image source={require('./assets/logo.png')} style={styles.logo} resizeMode='contain'/>
+        <Image source={require('./assets/images/logo.png')} style={styles.logo} resizeMode='contain'/>
     </View>
     <View style={styles.container}>
           <Solo_Button/>
@@ -43,7 +43,9 @@ logo: {
   },
 
   container: {
-    paddingTop: 125,
+    flex:1,
+    paddingTop: 215,
+    paddingBottom: 20,
     alignItems: 'center',
     justifyContent: 'center'
   },
