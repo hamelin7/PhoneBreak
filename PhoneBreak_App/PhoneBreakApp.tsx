@@ -1,6 +1,7 @@
 import React from 'react';
-import Solo_Button from './components/Solo_Button';
-import VS_Button from './components/VS_Button';
+import Solo_Button from './components/SoloButton';
+import VS_Button from './components/VSButton';
+import SensorDisplay from './components/SensorDisplay';
 import {
   View,
   Text,

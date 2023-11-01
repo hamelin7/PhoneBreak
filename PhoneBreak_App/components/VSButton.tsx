@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import {GameLogic} from './Button_Press';
+import {GameLogic} from './SensorDisplay';
 
-export default function SoloButton() {
+export default function VS_Button() {
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity
         style={styles.customButton}
         onPress={GameLogic}
       >
-        <Text style={styles.buttonText}>SOLO</Text>
+        <Text style={styles.buttonText}>VS</Text>
       </TouchableOpacity>
     </View>
   );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   customButton: {
     flex: 1,
-    backgroundColor: 'rgb(253, 150, 57)',
+    backgroundColor: 'rgb(253, 150, 57)', 
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 5,
@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   buttonText: {
-    color: 'black',
-    fontFamily:'Montserrat-Regular',
-    fontSize: 50,
+    color: 'black', // Text color
+    fontFamily:'Montserrat-Light',
+    fontSize: 70,
     fontWeight: 'normal',
     letterSpacing: 4
   },
