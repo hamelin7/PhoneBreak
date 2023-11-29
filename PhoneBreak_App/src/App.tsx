@@ -1,35 +1,46 @@
 import { Text, StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
 
-//import navigation dependencies
+// Import navigation dependencies
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-//import screens
-import GamePlay from './screens/GamePlay';
+// Import screens
+import SoloGamePlay from './screens/SoloGamePlay';
 import Home from './screens/Home';
+import VSGamePlay from './screens/VSGamePlay';
 
-//create RootStackParamList with our list of screens 
+// Create a type for the navigation stack's parameters
 export type RootStackParamList = {
   Home: undefined;
-  GamePlay: undefined;
+  SoloGamePlay: undefined;
+  VSGamePlay: undefined;
 };
 
-//add the screens into a single variable
-const Stack = createNativeStackNavigator<RootStackParamList>()
+// Create a stack navigator with the defined parameter list
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
     
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
+        {/* Stack Navigator for navigation */}
+        <Stack.Navigator initialRouteName='Home'
+            screenOptions={{
+                headerShown: false  // Hides the header for all screens in this stack
+            }}
+        >
             <Stack.Screen 
                 name='Home'
                 component={Home}
                 />
             <Stack.Screen 
-                name='GamePlay'
-                component={GamePlay}
+                name='SoloGamePlay'
+                component={SoloGamePlay}
+                />
+            <Stack.Screen 
+                name='VSGamePlay'
+                component={VSGamePlay}
                 />
         </Stack.Navigator>
       </NavigationContainer>

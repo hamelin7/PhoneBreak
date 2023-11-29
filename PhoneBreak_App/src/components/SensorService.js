@@ -1,18 +1,18 @@
-import { DeviceEventEmitter } from 'react-native';
-import { Accelerometer } from 'react-native-sensors';
+import { Gyroscope } from 'react-native-sensors';
 
-const accelerometerObservable = new Accelerometer();
+const gyroscopeObservable = new Gyroscope();
+console.log('Gyroscope observable created');
 
-const startListeningToAccelerometer = (callback) => {
-  const subscription = accelerometerObservable.subscribe(({ x, y, z }) => {
+const startListeningToGyroscope = (callback) => {
+  const subscription = gyroscopeObservable.subscribe(({ x, y, z }) => {
     callback({ x, y, z });
   });
 
   return subscription;
 };
 
-const stopListeningToAccelerometer = (subscription) => {
+const stopListeningToGyroscope = (subscription) => {
   subscription.unsubscribe();
 };
 
-export { startListeningToAccelerometer, stopListeningToAccelerometer };
+export { startListeningToGyroscope, stopListeningToGyroscope };

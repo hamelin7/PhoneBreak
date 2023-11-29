@@ -22,4 +22,9 @@ From here I just needed to focus on getting the accelerometer data to display on
 
 My plan right now is to take a variable to store the time from when the navigation is changed to the GamePlay screen and the time from when the phone is moved and calculate the total time from there. The GamePlay time should be displayed to the user while the phone isn't being touched and then the final time spent not using the phone should be displayed once the phone is moved. I will need another button to navigate back to the Home screen to hit the Solo button again and play again. Once I can get that all working I will go back and clean up the styling of the app to get the design looking good again.
 
-Before I forget I'm going to need to make sure my changes with a working ugly app are captured in GitHub in-case I make any other changes and need to revert back to a known working build. 
+Before I forget I'm going to need to make sure my changes with a working ugly app are captured in GitHub in-case I make any other changes and need to revert back to a known working build. Alright, major changes have been pushed to origin and my work is now replicated to GitHub.
+
+Now getting the react-native-sensors package to work isn't as straight forward as I expected. I thought I could just install the package with npm install react-native-sensors, but I ended up following the documentation here which had me add a line or two of code specifically within the android folder - https://react-native-sensors.github.io/docs/Installation.html
+
+Unfortunately, I'm still unable to get sensor data to display. When I attempt to call the accelerometer or gyroscope using react-native-sensors package I get an error that crashes the app. At this point I think I will need to bring in some help from Dr. Hoffman to see if there is something I'm missing or if there is a simpler solution. 
+
