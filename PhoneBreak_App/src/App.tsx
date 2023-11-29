@@ -8,7 +8,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Import screens
 import SoloGamePlay from './screens/SoloGamePlay';
 import Home from './screens/Home';
-import VSGamePlay from './screens/VSGamePlay';
 
 // Create a type for the navigation stack's parameters
 export type RootStackParamList = {
@@ -38,10 +37,7 @@ function App(): JSX.Element {
                 name='SoloGamePlay'
                 component={SoloGamePlay}
                 />
-            <Stack.Screen 
-                name='VSGamePlay'
-                component={VSGamePlay}
-                />
+                
         </Stack.Navigator>
       </NavigationContainer>
     )

@@ -29,15 +29,7 @@ const Home = ({navigation}: HomeProps) => {
           style={styles.customButton}
           onPress={() => navigation.navigate("SoloGamePlay")}
         >
-          <Text style={styles.buttonText}>SOLO</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.customButton}
-          onPress={() => navigation.navigate("VSGamePlay")}
-        >
-          <Text style={styles.buttonText}>VS</Text>
+          <Text style={styles.buttonText}>Play</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -65,16 +57,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row', // Use row to align buttons horizontally
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 150, // Adjust this value to move the content down
-    marginVertical: 10, // Adjust this value to change the space between buttons
+    //paddingTop: 250, // Adjust this value to move the content down
   },
   customButton: {
-    width: 215, // Adjust the width as needed
+    width: '50%', // Adjust the width as needed
     height: 120, // Adjust the height as needed
     backgroundColor: 'rgb(253, 150, 57)',
-    alignItems: 'center',
+    alignItems: 'center', // Center horizontally
     justifyContent: 'center',
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 11,
@@ -83,7 +74,8 @@ const styles = StyleSheet.create({
     shadowRadius: 15.19,
     elevation: 23,
     borderRadius: 15,
-    marginHorizontal: 5,
+    marginHorizontal: '25%', // Adjust the margin as needed
+    marginTop: '75%'
   },
   buttonText: {
     color: 'black',
