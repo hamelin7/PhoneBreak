@@ -52,10 +52,7 @@ const SoloGamePlay: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.header}>
-        <Image
-          style={styles.logo}
-          source={require('../../assets/images/logo.png')}
-        />
+      <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBreak</Text>
       </View>
       <View style={styles.container}>
         <Text style={{ fontSize: 50 }}>{formatTime(elapsedTime)}</Text>
@@ -110,7 +107,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15.19,
     elevation: 23,
     borderRadius: 15,
-    marginHorizontal: 5,
+    marginHorizontal: 5
   },
   buttonText: {
     color: 'black',

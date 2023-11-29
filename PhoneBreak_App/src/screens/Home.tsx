@@ -20,7 +20,8 @@ const Home = ({navigation}: HomeProps) => {
     <SafeAreaView>
       {/* Header section with logo */}
       <View style={styles.header}>
-        <Image source={require('../../assets/images/logo.png')} style={styles.logo} resizeMode='contain'/>
+        {/*<Image source={require('../../assets/images/logo.png')} style={styles.logo} resizeMode='contain'/>*/}
+        <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBreak</Text>
       </View>
 
       {/* Button section */}
@@ -29,7 +30,7 @@ const Home = ({navigation}: HomeProps) => {
           style={styles.customButton}
           onPress={() => navigation.navigate("SoloGamePlay")}
         >
-          <Text style={styles.buttonText}>Play</Text>
+          <Text style={styles.buttonText}>PLAY</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row', // Use row to align buttons horizontally
     justifyContent: 'center',
     alignItems: 'center',
-    //paddingTop: 250, // Adjust this value to move the content down
   },
   customButton: {
     width: '50%', // Adjust the width as needed
