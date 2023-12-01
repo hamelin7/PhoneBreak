@@ -52,7 +52,7 @@ const SoloGamePlay: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.header}>
-      <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBreak</Text>
+      <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBrake</Text>
       </View>
       <View style={styles.container}>
         <Text style={{ fontSize: 50 }}>{formatTime(elapsedTime)}</Text>

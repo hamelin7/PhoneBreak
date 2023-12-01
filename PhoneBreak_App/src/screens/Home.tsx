@@ -18,10 +18,10 @@ type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 const Home = ({navigation}: HomeProps) => {
   return (
     <SafeAreaView>
-      {/* Header section with logo */}
+      {/* Header section*/}
       <View style={styles.header}>
         {/*<Image source={require('../../assets/images/logo.png')} style={styles.logo} resizeMode='contain'/>*/}
-        <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBreak</Text>
+        <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBrake</Text>
       </View>
 
       {/* Button section */}
