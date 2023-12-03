@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image } from 'react-native';
+import { firestore } from '../components/firebase'; // Import Firebase configuration file
 
 const SoloGamePlay: React.FC = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [buttonText, setButtonText] = useState<string>('START');
+  const [longestTimer, setLongestTimer] = useState<number | null>(null);
+  const [recentTimer, setRecentTimer] = useState<number | null>(null);
+  const [totalPlays, setTotalPlays] = useState<number>(0);
+
   let interval: NodeJS.Timeout;
 
   useEffect(() => {
@@ -21,16 +25,35 @@ const SoloGamePlay: React.FC = () => {
     return () => clearInterval(interval); // Cleanup the interval on component unmount or when startTime is cleared
   }, [startTime]);
 
-  const handleStartButtonPress = () => {
+  const handleStartButtonPress = async () => {
     if (startTime) {
       // If startTime is set, it means the timer is already running, so stop the timer
       clearInterval(interval);
       setStartTime(null);
       setButtonText('START');
-      // Store the elapsed time in a variable or use it as needed
-      const storedElapsedTime = elapsedTime;
+
+      // Store the elapsed time in Firebase
+      const userId = 'TEST_USER'; // Replace with the actual user ID in the future
+      const timerValuesRef = firestore.collection('timerValues').doc(userId);
+      const newTimerData = {
+        date: new Date(),
+        timer_value: elapsedTime,
+      };
+      await timerValuesRef.collection('entries').add(newTimerData);
+
+      // Calculate longest timer
+      if (longestTimer === null || elapsedTime > (longestTimer || 0)) {
+        setLongestTimer(elapsedTime);
+      }
+
+      // Set recent timer
+      setRecentTimer(elapsedTime);
+
+      // Increment total plays
+      setTotalPlays((prevTotalPlays) => prevTotalPlays + 1);
+
       // Display or use storedElapsedTime as needed
-      console.log(`Elapsed Time: ${formatTime(storedElapsedTime)}`);
+      console.log(`Elapsed Time: ${formatTime(elapsedTime)}`);
     } else {
       // If startTime is not set, it means the timer is not running, so start the timer
       const currentTime = new Date().getTime();
@@ -52,10 +75,17 @@ const SoloGamePlay: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.header}>
-      <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBrake</Text>
+        <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBrake</Text>
       </View>
       <View style={styles.container}>
         <Text style={{ fontSize: 50 }}>{formatTime(elapsedTime)}</Text>
+        <Text style={{ fontSize: 20, marginVertical: 10 }}>
+          Longest Timer: {longestTimer !== null ? formatTime(longestTimer) : 'N/A'}
+        </Text>
+        <Text style={{ fontSize: 20, marginVertical: 10 }}>
+          Recent Timer: {recentTimer !== null ? formatTime(recentTimer) : 'N/A'}
+        </Text>
+        <Text style={{ fontSize: 20, marginVertical: 10 }}>Total Plays: {totalPlays}</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.customButton}
@@ -75,10 +105,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgb(253, 150, 57)',
     height: 75,
-  },
-  logo: {
-    width: '45%',
-    height: '45%',
   },
   container: {
     flex: 1,
