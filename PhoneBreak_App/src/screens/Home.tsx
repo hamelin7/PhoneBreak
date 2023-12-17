@@ -85,15 +85,15 @@ const styles = StyleSheet.create({
     color: 'black', 
   },
   buttonContainer: {
-    flexDirection: 'row', // Use row to align buttons horizontally
+    flexDirection: 'row', // Using row to align buttons horizontally
     justifyContent: 'center',
     alignItems: 'center',
   },
   customButton: {
-    width: '50%', // Adjust the width as needed
-    height: 120, // Adjust the height as needed
+    width: '50%', 
+    height: 120, 
     backgroundColor: 'rgb(253, 150, 57)',
-    alignItems: 'center', // Center horizontally
+    alignItems: 'center', 
     justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15.19,
     elevation: 23,
     borderRadius: 15,
-    marginHorizontal: '25%', // Adjust the margin as needed
+    marginHorizontal: '25%',
     marginTop: '10%'
   },
   buttonText: {
