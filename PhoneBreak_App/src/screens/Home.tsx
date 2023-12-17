@@ -80,10 +80,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 25,
     fontFamily: 'Montserrat-Regular',
-    fontSize: 30, 
+    fontSize: 35, 
     marginVertical: 10, 
     color: 'black', 
-    shadowColor: 'grey',
   },
   buttonContainer: {
     flexDirection: 'row', // Use row to align buttons horizontally
