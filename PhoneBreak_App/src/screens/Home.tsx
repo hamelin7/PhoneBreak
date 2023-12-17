@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     color: 'black', 
   },
   buttonContainer: {
-    flexDirection: 'row', // Using row to align buttons horizontally
+    flexDirection: 'row', 
     justifyContent: 'center',
     alignItems: 'center',
   },
