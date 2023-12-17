@@ -1,66 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { firestore } from '../components/firebase'; // Import Firebase configuration file
 
-const SoloGamePlay: React.FC = () => {
+const SoloGamePlay = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [buttonText, setButtonText] = useState<string>('START');
-  const [longestTimer, setLongestTimer] = useState<number | null>(null);
-  const [recentTimer, setRecentTimer] = useState<number | null>(null);
-  const [totalPlays, setTotalPlays] = useState<number>(0);
+  const intervalRef = useRef<NodeJS.Timeout>();
+  const [mostRecentData, setMostRecentData] = useState<{
+    play_date: string;
+    play_time: number;
+  } | null>(null);
 
-  let interval: NodeJS.Timeout;
+  const fetchMostRecentData = async () => {
+    try {
+      const response = await fetch('http://192.168.2.44:3001/getRecentData?userId=1');//using my ip address so the emulator can reach the mysql api connection
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('Response data:', data);
+      setMostRecentData(data);
+    } catch (error) {
+      console.error('Error fetching most recent data:', error);
+    }
+  };
 
   useEffect(() => {
-    if (startTime) {
-      interval = setInterval(() => {
-        const currentTime = new Date().getTime();
-        const elapsed = currentTime - startTime;
-        setElapsedTime(elapsed);
-      }, 1000); // Update every second
-    }
-
-    return () => clearInterval(interval); // Cleanup the interval on component unmount or when startTime is cleared
-  }, [startTime]);
+    fetchMostRecentData();
+  }, []);
 
   const handleStartButtonPress = async () => {
     if (startTime) {
-      // If startTime is set, it means the timer is already running, so stop the timer
-      clearInterval(interval);
+      clearInterval(intervalRef.current);
       setStartTime(null);
       setButtonText('START');
 
-      // Store the elapsed time in Firebase
-      const userId = 'TEST_USER'; // Replace with the actual user ID in the future
-      const timerValuesRef = firestore.collection('timerValues').doc(userId);
-      const newTimerData = {
-        date: new Date(),
-        timer_value: elapsedTime,
+      const playDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      const userId = 1;
+      const playTimeInSeconds = Math.floor(elapsedTime / 1000);
+      const gameData = {
+        userId,
+        playDateTime,
+        playTime: playTimeInSeconds,
       };
-      await timerValuesRef.collection('entries').add(newTimerData);
 
-      // Calculate longest timer
-      if (longestTimer === null || elapsedTime > (longestTimer || 0)) {
-        setLongestTimer(elapsedTime);
+      try {
+        const response = await fetch('http://192.168.2.44:3001/updateData', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(gameData),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          console.log('Data sent successfully');
+          const responseData = await response.json();
+          console.log(responseData);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
 
-      // Set recent timer
-      setRecentTimer(elapsedTime);
-
-      // Increment total plays
-      setTotalPlays((prevTotalPlays) => prevTotalPlays + 1);
-
-      // Display or use storedElapsedTime as needed
-      console.log(`Elapsed Time: ${formatTime(elapsedTime)}`);
+      fetchMostRecentData();
+      setElapsedTime(0);
     } else {
-      // If startTime is not set, it means the timer is not running, so start the timer
       const currentTime = new Date().getTime();
       setStartTime(currentTime);
       setButtonText('STOP');
-      // Reset elapsedTime when starting the timer
       setElapsedTime(0);
+
+      intervalRef.current = setInterval(() => {
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + 1000);
+      }, 1000);
     }
   };
 
@@ -77,15 +93,11 @@ const SoloGamePlay: React.FC = () => {
       <View style={styles.header}>
         <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBrake</Text>
       </View>
+      <View>
+        <Text style={styles.message}>How long can you go without touching your phone?</Text>
+      </View>
       <View style={styles.container}>
-        <Text style={{ fontSize: 50 }}>{formatTime(elapsedTime)}</Text>
-        <Text style={{ fontSize: 20, marginVertical: 10 }}>
-          Longest Timer: {longestTimer !== null ? formatTime(longestTimer) : 'N/A'}
-        </Text>
-        <Text style={{ fontSize: 20, marginVertical: 10 }}>
-          Recent Timer: {recentTimer !== null ? formatTime(recentTimer) : 'N/A'}
-        </Text>
-        <Text style={{ fontSize: 20, marginVertical: 10 }}>Total Plays: {totalPlays}</Text>
+        <Text style={styles.timercontainer}>{formatTime(elapsedTime)}</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.customButton}
@@ -94,7 +106,15 @@ const SoloGamePlay: React.FC = () => {
             <Text style={styles.buttonText}>{buttonText}</Text>
           </TouchableOpacity>
         </View>
+        {mostRecentData && (
+        <View style={styles.dataContainer}>
+          <Text style={styles.dataTextHeader}>Most Recent Game:</Text>
+          <Text style={styles.dataText}>Date/Time: {mostRecentData.play_date}</Text>
+          <Text style={styles.dataText}>Duration: {mostRecentData.play_time} seconds</Text>
+        </View>
+      )}
       </View>
+
     </SafeAreaView>
   );
 };
@@ -115,8 +135,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 80,
-    marginVertical: 30,
+    paddingTop: 10,
+    marginVertical: 90,
   },
   customButton: {
     width: 215,
@@ -133,7 +153,7 @@ const styles = StyleSheet.create({
     shadowRadius: 15.19,
     elevation: 23,
     borderRadius: 15,
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
   buttonText: {
     color: 'black',
@@ -141,6 +161,36 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: 'normal',
     letterSpacing: 4,
+  },
+  dataContainer: {
+    padding: 5,
+  },
+  dataText: {
+    textAlign: 'left',
+    fontSize: 20,
+    color: 'black',
+    fontFamily: 'Montserrat-Regular',
+  },
+  dataTextHeader: {
+    textAlign: 'center',
+    fontSize: 30,
+    color: 'black',
+    fontFamily: 'Montserrat-Regular',
+  },
+  message: {
+    marginTop: 10,
+    padding: 25,
+    fontSize: 28,
+    textAlign: 'center',
+    marginVertical: 10,
+    fontFamily: 'Montserrat-Regular',
+    color: 'black',
+  },
+  timercontainer: {
+    fontSize: 50,
+    textAlign: 'center',
+    fontFamily: 'Montserrat-Regular',
+    color: 'grey',
   },
 });
 

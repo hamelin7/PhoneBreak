@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -15,13 +15,33 @@ import { RootStackParamList } from '../App';
 // Define the props type for the Home component based on navigation
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
+const phrases = [
+  "Embrace the world beyond the screen.",
+  "Disconnect to reconnect with life's vibrant moments.",
+  "Let the beauty of the present unfold without digital distractions.",
+  "Rediscover the joy of genuine connections, nature's wonders, and the simple pleasure of being fully present.",
+  "Break free from the virtual to savor the richness of reality."
+];
+
+const getRandomPhrase = () => {
+  const randomIndex = Math.floor(Math.random() * phrases.length);
+  return phrases[randomIndex];
+};
+
 const Home = ({navigation}: HomeProps) => {
+  const [randomPhrase, setRandomPhrase] = useState<string>(getRandomPhrase()); // Initial random phrase
+
   return (
     <SafeAreaView>
       {/* Header section*/}
       <View style={styles.header}>
         {/*<Image source={require('../../assets/images/logo.png')} style={styles.logo} resizeMode='contain'/>*/}
         <Text style={{ fontSize: 50, fontFamily: 'MontserratSubrayada-Regular', color: 'black' }}>PhoneBrake</Text>
+      </View>
+
+      {/* Random phrase section */}
+      <View style={styles.phraseContainer}>
+        <Text style={styles.phraseContainer}>{randomPhrase}</Text>
       </View>
 
       {/* Button section */}
@@ -54,6 +74,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  phraseContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: 25,
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 30, 
+    marginVertical: 10, 
+    color: 'black', 
+    shadowColor: 'grey',
+  },
   buttonContainer: {
     flexDirection: 'row', // Use row to align buttons horizontally
     justifyContent: 'center',
@@ -75,7 +106,7 @@ const styles = StyleSheet.create({
     elevation: 23,
     borderRadius: 15,
     marginHorizontal: '25%', // Adjust the margin as needed
-    marginTop: '75%'
+    marginTop: '10%'
   },
   buttonText: {
     color: 'black',
